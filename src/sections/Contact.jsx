@@ -1,40 +1,41 @@
-export default function ContactSection({
-  image = "src/assets/home.png",
-  rightPattern = "src/assets/Frame 36.png",
-  leftPattern = "src/assets/Frame 36.png",
-}) {
+import { contactMessage } from "../data/content";
+
+export default function ContactSection() {
   return (
-    <>
-      <div className="text-white px-10 py-16 min-h-screen bg-black mt-15">
-        <div className="w-full flex justify-center py-20 bg-black">
-          <div className="relative w-full h-[180px] bg-[#A87FF3] rounded-[15px]">
+    <section className="bg-black text-white px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto">
+        <div className="relative bg-[#A87FF3] rounded-2xl p-6 sm:p-8 lg:p-12 overflow-hidden min-h-[200px] sm:min-h-[250px] flex items-center">
+
+          <img
+            className="hidden lg:block absolute bottom-4 left-4 w-[100px] h-[80px] opacity-60"
+            alt="Pattern"
+            src={contactMessage.leftPattern}
+          />
+
+          <img
+            className="hidden lg:block absolute top-4 right-4 w-[100px] h-[80px] rotate-180 opacity-60"
+            alt="Pattern"
+            src={contactMessage.rightPattern}
+          />
+
+          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 lg:gap-8 w-full">
             <img
-              className="absolute top-[55px] left-0 w-[150px] h-[125px]"
-              alt="Frame"
-              src="src\assets\Frame 36.png"
+              className="w-32 sm:w-40 lg:w-48 h-auto object-contain flex-shrink-0"
+              alt="Contact illustration"
+              src={contactMessage.image}
             />
 
-            <img
-              className="absolute top-0 left-[1120px] w-[150px] h-[125px] rotate-180"
-              alt="Frame"
-              src="src\assets\Frame 36.png"
-            />
-
-            <p className="absolute top-[68px] left-[298px] [font-family:'Poppins',Helvetica] font-normal text-[#ffffff] text-[22px] tracking-[-1.10px] leading-[22px]">
-              Thanks for visit my website
-              <br />
-              If you have any questions you can write me to any of my social
-              networks, I am sure I will answer you.
-            </p>
-
-            <img
-              className="absolute top-[-131px] left-[43px] w-[232px] h-[271px]"
-              alt="Still life graphic"
-              src="src\assets\home.png"
-            />
+            <div className="text-center lg:text-left">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3">
+                {contactMessage.title}
+              </h3>
+              <p className="text-sm sm:text-base opacity-90">
+                {contactMessage.subtitle}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }

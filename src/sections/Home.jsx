@@ -1,140 +1,71 @@
-import React from "react";
+import Navbar from "../components/Navbar";
+import Button from "../components/Button";
+import SocialIcon from "../components/SocialIcon";
+import StatCard from "../components/StatCard";
+import { personalInfo, socialLinks, stats } from "../data/content";
+
 export default function Home() {
-  const [open, setOpen] = React.useState(false);
-  const DropdownItem = () => (
-    <div className="flex items-center space-x-2 cursor-pointer hover:bg-white/10 px-3 py-2 rounded-lg">
-      <div className="w-8 h-8 bg-white rounded" />
-      <div className="flex flex-col">
-        <span className="font-medium">Project Title</span> 
-        <span className="text-xs text-white/70">Focus on Insights</span>
-      </div>
-    </div>
-  );
   return (
     <>
-      <nav
-        className="w-full flex justify-between items-center pt-[50px] pr-[100px] pb-[30px] pl-[100px] opacity-100"
-        style={{ height: "120px" }}
-      >
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <img
-            src="src\assets\group-1.png"
-            alt="logo"
-            className="h-[30px] w-auto object-contain"
-          />
-          <span className="text-[24px] font-bold">Web</span>
-        </div>
+      <Navbar />
 
-        {/* Navigation Links */}
-        <ul className="flex items-center space-x-6 text-white text-sm font-light">
-          <li className="cursor-pointer ">Home</li>
-          {/* Portfolio Dropdown */}
-        <li
-          className="cursor-pointer relative"
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
-        >
-          <div className="flex items-center space-x-1">
-            <span>Portfolio</span>
-            <span className={`transition-transform ${open ? "rotate-180" : ""}`}>
-              <i class="fa-solid fa-chevron-down"></i>
-            </span>
-          </div>
+      <section id="home" className="bg-black text-white px-4 sm:px-6 lg:px-12 py-8 sm:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-          {/* Dropdown Box */}
-          {open && (
-            <div className="absolute top-6 left-0 bg-[#9F63FF] py-3 px-4 rounded-xl border border-white/40 w-[240px] shadow-xl space-y-3">
-
-              {/* Tiny arrow pointer */}
-              <div className="absolute -top-2 left-5 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-[#9F63FF]"></div>
-
-              {/* Dropdown Items */}
-              <DropdownItem />
-              <DropdownItem />
-            </div>
-          )}
-        </li>
-          <li className="cursor-pointer ">Skills</li>
-          <li className="cursor-pointer ">About Me</li>
-        </ul>
-
-        {/* Button */}
-        <button className="bg-[#9C6BFF] text-white text-xs px-4 py-2 rounded-lg hover:opacity-80 transition">
-          Contact Me
-        </button>
-      </nav>
-      <div className="min-h-screen bg-black text-white flex items-center justify-center p-3">
-        <div className="max-w-9xl w-full  grid grid-cols-1 lg:grid-cols-2">
-          {/* LEFT SECTION */}
-          <div className="flex flex-col justify-center  space-y-5">
-            <h1 className="text-9xl font-extrabold leading-tight">
+          <div className="flex flex-col space-y-6 sm:space-y-8 order-2 lg:order-1">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold leading-tight">
               PRODUCT
               <br />
               DESIGNER
             </h1>
 
-            <h2 className="text-7xl font-bold mt-3 bg-gradient-to-r from-pink-500 to-yellow-400 bg-clip-text text-transparent">
-              CRISTIAN MUN0Z
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-pink-500 to-yellow-400 bg-clip-text text-transparent">
+              {personalInfo.name}
             </h2>
-            {/* Social Icons */}
-            <div className="flex gap-6 text-3xl justify-center text-white text-color-#bfb8b8 mt-6 opacity-80 space-x-4 items-center border-white w-ful p-4">
-              <i className="fa-brands fa-instagram border-white border-1 rounded p-1 w-37.14"></i>
-              <i className="fa-brands fa-figma border-white border-1 rounded p-1  w-37.14"></i>
-              <i className="fa-brands fa-linkedin border-white border-1 rounded p-1  w-37.14"></i>
 
-              <i className="fa-brands fa-twitter border-white border-1 rounded p-1  w-37.14"></i>
-              <i className="fa-brands fa-telegram border-white border-1 rounded p-1  w-37.14"></i>
-              <i className="fa-brands fa-medium border-white border-1 rounded p-1  w-37.14"></i>
+            <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start opacity-80">
+              {socialLinks.map((social, index) => (
+                <SocialIcon key={index} icon={social.icon} href={social.href} />
+              ))}
             </div>
 
-            <div className="flex  gap-8  mt-10 mx-10 color-#bfb8b8 border-1">
-              <button className="text-white flex items-center w-[875px] h-[52px] gap-[8px] pt-[16px] pr-[24px] pb-[16px] pl-[32px] bg-[#292929] justify-center ">
-                Download Curriculum Vitae{" "}
-                <i class="fa-light fa-circle-arrow-down"></i>
-              </button>
+            <div className="flex justify-center lg:justify-start">
+              <Button
+                variant="secondary"
+                icon="fa-solid fa-circle-arrow-down"
+                className="w-full sm:w-auto"
+              >
+                Download Curriculum Vitae
+              </Button>
             </div>
           </div>
-          {/* RIGHT SECTION */}
-          <div className="rounded overflow-hidden justify-center flex items-center">
+
+          <div className="rounded overflow-hidden flex justify-center items-center order-1 lg:order-2">
             <img
-              src="src\assets\home.png"
+              src={personalInfo.heroImage}
               alt="Designer workspace"
-              className="w-100% h-653px object-cover"
+              className="w-full max-w-md lg:max-w-full h-auto object-contain"
             />
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* BOX */}
-        <div class="min-h-screen bg-black text-white flex items-center justify-center ">
-          <div class="max-w-7xl w-full flex items-center justify-around space-x-8 border-1 border- [#646464] rounded-lg p-8">
-            <div class="text-[#C7FFB0]">
-              <h2 class="text-[70px] font-bold leading-none">90%</h2>
-              <p class="text-[20px] leading-tight">
-                Job Success <br /> Score on Upwork
-              </p>
-            </div>
-
-            <img src="src\assets\Dawn.svg" class="w-[30px] h-[30px]" />
-
-            <div class="text-[#C7FFB0]">
-              <h2 class="text-[70px] font-bold leading-none">&gt;25.000</h2>
-              <p class="text-[20px] leading-tight">
-                Duplicates on Figma <br /> Community
-              </p>
-            </div>
-
-            <img src="src\assets\Dawn.svg" class="w-[30px] h-[30px]" />
-
-            <div class="text-[#C7FFB0]">
-              <h2 class="text-[70px] font-bold leading-none">&gt;2K</h2>
-              <p class="text-[20px] leading-tight">
-                In Finished <br /> Works
-              </p>
-            </div>
+      <section className="bg-black text-white px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 lg:gap-12 items-center border border-[#646464] rounded-lg p-6 sm:p-8 lg:p-12">
+            {stats.map((stat, index) => (
+              <>
+                <StatCard key={index} value={stat.value} label={stat.label} />
+                {index < stats.length - 1 && (
+                  <div className="hidden sm:flex justify-center">
+                    <img src="src/assets/Dawn.svg" className="w-6 h-6 lg:w-8 lg:h-8" alt="divider" />
+                  </div>
+                )}
+              </>
+            ))}
           </div>
         </div>
+      </section>
     </>
   );
 }

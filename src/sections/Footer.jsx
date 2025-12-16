@@ -1,28 +1,28 @@
+import { personalInfo, navigation } from "../data/content";
+
 export default function Footer() {
   return (
-    <footer className="w-full bg-black text-white py-6 ">
-      <div className="max-w-[1530px] mx-auto px-15 mt-0 mb-0 flex items-center justify-between">
-        
-        {/* Left Logo */}
+    <footer className="w-full bg-black text-white py-6 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+
         <div className="flex items-center gap-3">
           <img
-            src="src\assets\group-1.png"
+            src={personalInfo.logo}
             alt="logo"
-            className="h-[30px] w-auto object-contain"
+            className="h-[24px] sm:h-[30px] w-auto object-contain"
           />
-          <span className="text-[24px] font-bold">Web</span>
+          <span className="text-lg sm:text-[24px] font-bold">Web</span>
         </div>
 
-        {/* Right Menu */}
-        <nav>
-          <ul className="flex items-center gap-8 text-[14px] opacity-80">
-            <li className="hover:opacity-100 transition">Home</li>
-            <li className="hover:opacity-100 transition">Portfolio</li>
-            <li className="hover:opacity-100 transition">Skills</li>
-            <li className="hover:opacity-100 transition">About Me</li>
+        <nav className="w-full sm:w-auto">
+          <ul className="flex items-center justify-center gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm opacity-80 flex-wrap">
+            {navigation.map((item, index) => (
+              <li key={index} className="hover:opacity-100 transition">
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))}
           </ul>
         </nav>
-
       </div>
     </footer>
   );
